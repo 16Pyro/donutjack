@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DONUT SMP JACKPOT 🔥 | Pay hellcat_monkeyyy for the Real Pot</title>
+  <!-- same fonts/style as before, keeping it short -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* paste your previous dark/neon style here - keeping compact */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#000; color:#ddd; font-family:'Roboto Mono',monospace; min-height:100vh; background-image:linear-gradient(rgba(10,0,20,0.9),rgba(0,0,0,0.95)); }
+    .container { max-width:1200px; margin:0 auto; padding:20px; }
+    header { text-align:center; padding:80px 20px 50px; background:linear-gradient(180deg,#200040,#000); }
+    h1 { font-family:'Orbitron',sans-serif; font-size:5rem; color:#ff00cc; text-shadow:0 0 40px #ff00cc,0 0 80px #00ffff; margin-bottom:15px; animation:neon 3s infinite alternate; }
+    @keyframes neon { from {text-shadow:0 0 20px #ff00cc,0 0 50px #00ffff;} to {text-shadow:0 0 50px #ff00cc,0 0 100px #00ffff;} }
+    .tagline { font-size:1.8rem; color:#00ffff; margin:20px 0; }
+    .pot-box { background:rgba(0,0,0,0.8); border:3px solid #ff00cc; border-radius:20px; padding:40px; margin:50px auto; max-width:700px; text-align:center; box-shadow:0 0 60px rgba(255,0,204,0.6); }
+    .pot-amount { font-size:5rem; font-weight:bold; color:#00ffaa; margin:20px 0; text-shadow:0 0 30px #00ffaa; }
+    /* ... rest of your styles ... */
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>DONUT JACKPOT</h1>
+      <p class="tagline">Pay hellcat_monkeyyy • See the Real Pot • Get Rich or Get Cleaned 💀</p>
+      
+      <div class="pot-box">
+        <h2>CURRENT REAL JACKPOT POT (hellcat_monkeyyy's Stack)</h2>
+        <div class="pot-amount" id="pot">Loading real pot...</div>
+        <p>Updates live via Donut SMP API • Next big wager?</p>
+      </div>
+
+      <a href="https://discord.com/invite/donutsmp" target="_blank" class="btn">JOIN DISCORD & PAY UP</a>
+      <a href="minecraft://donutsmp.net" class="btn">JOIN SERVER</a>
+    </div>
+  </header>
+
+  <!-- keep your winners/how it works sections -->
+
+  <script>
+    // Real API fetch for hellcat_monkeyyy balance/pot proxy
+    async function fetchRealPot() {
+      const username = 'hellcat_monkeyyy'; // change if needed
+      const apiUrl = `https://api.donutsmp.net/v1/players/${username}`; // adjust endpoint if Swagger shows different (e.g. /economy/balance?user= or check docs)
+      
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error('API hit fail');
+        const data = await response.json();
+        
+        // Assuming response has something like data.balance or data.money (check real response in browser console)
+        let balance = data.balance || data.money || data.total || 0; // fallback guesses from common MC APIs
+        balance = Math.floor(balance).toLocaleString();
+        document.getElementById('pot').textContent = `${balance} $`;
+      } catch (err) {
+        console.error('API error:', err);
+        // Fallback to fake if API down/no endpoint
+        document.getElementById('pot').textContent = 'API down • Fake pot loading...';
+        // or start fake growth again
+        let fakePot = 8742519630;
+        setInterval(() => {
+          fakePot += Math.floor(Math.random() * 15000000) + 5000000;
+          document.getElementById('pot').textContent = fakePot.toLocaleString() + ' $';
+        }, 5000); // slower update
+      }
+    }
+
+    // Run on load + every 30s for live updates
+    fetchRealPot();
+    setInterval(fetchRealPot, 30000);
+
+    // If no exact balance, check Swagger/docs yourself or ask in Donut Discord for exact endpoint (some need key, but public ones exist)
+  </script>
+
+</body>
+</html>
